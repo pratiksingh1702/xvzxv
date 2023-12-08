@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8f7f537382.js" crossorigin="anonymous"></script>
+</head>
+<style>
+   
+    .r-box {
+
+        margin: 5px 0px 5px 0px;
+
+        padding: 2px;
+
+
+
+    }
+
+    .fblock {
+        width: 100%;
+
+        height: 100%;
+
+
+    }
+
+    .res {
+        padding: 3px;
+        margin-bottom: 10px;
+        max-height: 20rem;
+        min-height: 7rem;
+        overflow-y: scroll;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        border-radius: 10px;
+    }
+
+    .chat-input textarea {
+        border: none;
+        width: 80%;
+        height: 5rem;
+        outline: none;
+        font-size: 0.9rem;
+        resize: none;
+        margin: 2px 12px 0px 0px;
+        overflow-y: scroll;
+
+    }
+
+    text .chat-input span {
+        cursor: pointer;
+        color: blue;
+        visibility: hidden;
+    }
+
+    .chat-input textarea:valid~span {
+        visibility: visible;
+
+    }
+
+    .wblock {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    
+
+    input[type=submit] {
+        font-family: 'Ubuntu', sans-serif;
+    
+        transform: translate(-50%, -50%);
+        position: fixed;
+        top: 90%;
+        left: 90%;
+        width: 56px;
+        height: 23px;
+        line-height: 1;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border: 3px solid #8C82FC;
+        background: #fff;
+        color: #8C82FC;
+        border-radius: 40px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all .35s;
+    }
+    input[type=submit]:hover{
+  background: #8C82FC;
+  color: #fff;
+}
+
+
+    p {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    *::-webkit-scrollbar,
+    *::-webkit-scrollbar-thumb {
+        width: 26px;
+        border-radius: 13px;
+        background-clip: padding-box;
+        border: 10px solid transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 0 10px;
+    }
+</style>
+
+<body>
+    <!-- <div class="container">
+        <h1 id="text">
+            hi kese ho aap
+        </h1>
+        <img src="{{ MEDIA_URL }}IMG_20220406_192913_772.jpg" >
+    </div>
+     -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container wblock">
+            <div class="card center hi">
+                <div class="card-header">
+                    enter the text
+                </div>
+                <form method="get">
+                    {% csrf_token %}
+                    <div class="chat-input">
+                        <textarea placeholder="MESSAGE" name="message" required></textarea>
+                        <span id="send-btn"><input type="submit">
+                        </span>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container fblock">
+            {% for n in ct %}
+            <div class="r-box container-sm ">
+                <div class="res ">
+                    <p>{{n.content}}</p>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </section>
+</body>
+
+</html>
